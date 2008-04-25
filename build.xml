@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="" default="create-zip" name="ComBat">
+	<property name="dirOffset" value="../"/>
+	<import file="${dirOffset}/commontargets.xml"/>
+
+	<target depends="init" name="create-zip">
+		<antcall target="prezip"/>
+		<zip destfile="${dest.dir}/${ant.project.name}.zip" whenempty="fail" defaultexcludes="true">
+			<fileset dir="." includes="manifest, *.R, *.pdf"/>
+            <fileset dir="../common/R" includes="*.R" />
+        </zip>
+		<antcall target="postzip"/>
+	</target>
+
+</project>
