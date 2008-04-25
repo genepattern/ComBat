@@ -1,0 +1,50 @@
+#Wed April 24 10:51:36 EDT 2008
+author=Marc-Danie Nazaire, Broad Institute
+commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -o<output.file>
+cpuType=any
+description=Batch Correction
+fileFormat=res;gct;odf
+JVMLevel=2.5.0
+language=R
+LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00127
+name=ComBat
+os=any
+privacy=public
+quality=production
+requiredPatchLSIDs=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.server.patch\:00009\:1
+requiredPatchURLs=http\://www.broad.mit.edu/webservices/gpModuleRepository/download/prod/patch/?file\=/R_2_5_Check/broad.mit.edu\:cancer.software.genepattern.server.patch/00009/1/R2_5.zip
+taskType=Preprocess & Utilities
+userid=GenePattern
+version=
+
+p1_default_value=
+p1_description=A dataset file
+p1_fileFormat=gct;res;odf
+p1_MODE=IN
+p1_name=input.file
+p1_optional=
+p1_prefix_when_specified=
+p1_TYPE=FILE
+p1_type=java.io.File
+p1_value=
+
+p2_default_value=
+p2_description=A sample info file
+p2_fileFormat=txt
+p2_MODE=IN
+p2_name=sample.info.file
+p2_optional=
+p2_prefix_when_specified=
+p2_TYPE=FILE
+p2_type=java.io.File
+p2_value=
+
+p3_default_value=<input.file_basename>.combat
+p3_description=The name of the output file
+p3_name=output.file
+p3_optional=on
+p3_prefix_when_specified=
+p3_type=java.lang.String
+p3_value=
+
+
