@@ -91,9 +91,13 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
         dataset$calls
     }
 
-    pdf(file=paste(output.file.name, ".plot", sep=''), height = 12, width = 15)
+    if(prior.plots)
+        pdf(file=paste(output.file.name, ".plot", sep=''), height = 12, width = 15)
+
     combat.result <- ComBat(combat.input.file.name, sample.info.file.name, skip = 1, write = F, prior.plots = prior.plots, par.prior = par.prior)
-    dev.off();
+
+    if(prior.plots)
+        dev.off();
 
     combat.result <- subset(combat.result, select=colnames(data.matrix))
     row.names(combat.result) <- row.names(data.matrix)
