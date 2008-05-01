@@ -1,6 +1,6 @@
 #Wed April 24 10:51:36 EDT 2008
 author=Marc-Danie Nazaire, Broad Institute
-commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -o<output.file>
+commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> -f<filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
 cpuType=any
 description=Batch Correction
 fileFormat=res;gct;odf
@@ -39,12 +39,42 @@ p2_TYPE=FILE
 p2_type=java.io.File
 p2_value=
 
-p3_default_value=<input.file_basename>.combat
-p3_description=The name of the output file
-p3_name=output.file
+p3_default_value=
+p3_description=The covariate columns to use in analysis
+p3_name=covariate.columns
 p3_optional=on
 p3_prefix_when_specified=
 p3_type=java.lang.String
 p3_value=
 
+p4_default_value=
+p4_description=Whether to filter genes with absent calls
+p4_name=filter
+p4_optional=on
+p4_prefix_when_specified=
+p4_type=java.lang.String
+p4_value=
 
+p5_default_value=yes
+p5_description=Whether to generate prior plots
+p5_name=create.prior.plots
+p5_optional=on
+p5_prefix_when_specified=
+p5_type=java.lang.String
+p5_value=T\=yes;F\=no
+
+p6_default_value=parametric
+p6_description=Empirical priors method to use
+p6_name=prior.method
+p6_optional=on
+p6_prefix_when_specified=
+p6_type=java.lang.String
+p6_value=T\=parametric;F\=nonparametric
+
+p7_default_value=<input.file_basename>.combat
+p7_description=The name of the output file
+p7_name=output.file
+p7_optional=on
+p7_prefix_when_specified=
+p7_type=java.lang.String
+p7_value=
