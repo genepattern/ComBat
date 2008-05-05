@@ -29,9 +29,7 @@ p1_type=java.io.File
 p1_value=
 
 p2_default_value=
-p2_description=A file containing information about the samples.
-The sample info file must contain the three columns
-Array name, Sample name, and Batch
+p2_description=A file containing information about the samples. The sample info file must contain the three columns Array name, Sample name, and Batch.
 
 p2_fileFormat=txt
 p2_MODE=IN
@@ -43,9 +41,7 @@ p2_type=java.io.File
 p2_value=
 
 p3_default_value=
-p3_description=The covariate columns to use in analysis.
-This is a list specifying additional columns from
-sample info file to use in analysis (i.e, 4, 5, 7, É).
+p3_description=The covariate columns to use in analysis. This is a list specifying additional columns from sample info file to use in analysis (i.e, 4, 5, 7, . .).
 
 p3_name=covariate.columns
 p3_optional=on
@@ -54,10 +50,7 @@ p3_type=java.lang.String
 p3_value=
 
 p4_default_value=
-p4_description=The filter to apply to genes with absent calls.
-Filters genes with absent calls in 1-(filter absent calls) of
-the samples. A value of 1 implies no genes should be filtered.
-Ignored if input file is not a .res file.	
+p4_description=The filter to apply to genes with absent calls. Filters genes with absent calls in 1-(filter absent calls) of the samples. A value of 1 implies no genes should be filtered. Ignored if input file is not a .res file.	
 p4_name=filter
 p4_optional=on
 p4_prefix_when_specified=
@@ -73,10 +66,7 @@ p5_type=java.lang.String
 p5_value=T\=yes;F\=no
 
 p6_default_value=parametric
-p6_description=Empirical Bayes priors distribution estimation
-method to use. Either a parametric or non-parametric method
-can be applied. If unsure of which method to use try the parametric
-method first since it is faster.
+p6_description=Empirical Bayes priors distribution estimation method to use. Either a parametric or non-parametric method can be applied. If unsure of which method to use try the parametric method first since it is faster.
 p6_name=prior.method
 p6_optional=on
 p6_prefix_when_specified=
