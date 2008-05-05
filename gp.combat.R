@@ -33,9 +33,9 @@ parseCmdLine <- function(...) {
 		{
 			sample.info.file.name <- value
    		}
-   		else if(flag=='-c')
+   		else if(flag == '-c')
 		{
-			covariates <- value
+			covariates <- c(3, value)
    		}
    		else if(flag=='-f')
 		{
@@ -74,6 +74,9 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
 
     dataset <- read.dataset(input.file.name)
     data.matrix <- dataset$data
+
+    if(!is.null(dataset$calls) && (is.null(filter) || filter==''))
+        stop("Input file contains calls: Please specify a value for the filter absent calls parameter.")
 
     combat.input.file.name <- "combat_input_file.txt"
     on.exit(unlink(combat.input.file.name))
@@ -118,21 +121,38 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     if(!is.null(dataset$row.descriptions))
     {
         descriptions.row <- rbind(row.names(data.matrix), dataset$row.descriptions)
-        descriptions.row <- descriptions.row[gene.info]
-        dataset$row.descriptions <- descriptions.row
+        colnames(descriptions.row) <- row.names(data.matrix)
+        #descriptions.row <- descriptions.row[gene.info]
+        descriptions.row <- subset(descriptions.row, select = row.names(combat.result))
+        dataset$row.descriptions <- descriptions.row[2,]
     }
-
 
     if(!is.null(dataset$column.descriptions))
     {
+        dataset$column.descriptions <- dataset$column.descriptions[ dataset$column.descriptions!=""]
         descriptions.column <- rbind(colnames(data.matrix), dataset$column.descriptions)
-        descriptions.column <- descriptions.column[colnames(combat.result)]
-        dataset$column.descriptions <- descriptions.column
-    }
+        column.names <- colnames(combat.result)
 
+        colnames(descriptions.column) <- descriptions.column[1,] 
+        descriptions.column <- subset(descriptions.column, select=column.names)
+        descriptions.column <- descriptions.column[2,]
+
+        dataset$column.descriptions <- descriptions.column        
+    }
 
     if(!is.null(dataset$calls))
     {
+        rownames <- row.names(dataset$calls)
+        calls <- t(dataset$calls)
+        colnames(calls) <- rownames
+
+        calls <- subset(calls, select = row.names(combat.result))
+        calls <- t(calls)
+        row.names(calls) <- gene.info
+        colnames(calls) <- colnames(dataset$calls)
+
+
+        dataset$calls <- calls
         write.res(dataset, output.file.name)
     }
     else
