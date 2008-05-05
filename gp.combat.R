@@ -78,10 +78,14 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     if(!is.null(dataset$calls) && (is.null(filter) || filter==''))
         stop("Input file contains calls: Please specify a value for the filter absent calls parameter.")
 
+    if(is.null(dataset$calls))
+        filter <- F
+        
     combat.input.file.name <- "combat_input_file.txt"
     on.exit(unlink(combat.input.file.name))
 
     column.names <- c("ProbeID", colnames(data.matrix))
+    input.table <- data.matrix
     #check if it is a res file
     if(!is.null(dataset$calls))
     {
