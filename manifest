@@ -18,7 +18,7 @@ userid=GenePattern
 version=
 
 p1_default_value=
-p1_description=A dataset file
+p1_description=input file Ð .res, .gct
 p1_fileFormat=gct;res;odf
 p1_MODE=IN
 p1_name=input.file
@@ -29,7 +29,10 @@ p1_type=java.io.File
 p1_value=
 
 p2_default_value=
-p2_description=A sample info file
+p2_description=A file containing information about the samples.
+The sample info file must contain the three columns
+Array name, Sample name, and Batch
+
 p2_fileFormat=txt
 p2_MODE=IN
 p2_name=sample.info.file
@@ -40,7 +43,10 @@ p2_type=java.io.File
 p2_value=
 
 p3_default_value=
-p3_description=The covariate columns to use in analysis
+p3_description=The covariate columns to use in analysis.
+This is a list specifying additional columns from
+sample info file to use in analysis (i.e, 4, 5, 7, É).
+
 p3_name=covariate.columns
 p3_optional=on
 p3_prefix_when_specified=
@@ -48,7 +54,10 @@ p3_type=java.lang.String
 p3_value=
 
 p4_default_value=
-p4_description=Whether to filter genes with absent calls
+p4_description=The filter to apply to genes with absent calls.
+Filters genes with absent calls in 1-(filter absent calls) of
+the samples. A value of 1 implies no genes should be filtered.
+Ignored if input file is not a .res file.	
 p4_name=filter
 p4_optional=on
 p4_prefix_when_specified=
@@ -56,7 +65,7 @@ p4_type=java.lang.String
 p4_value=
 
 p5_default_value=yes
-p5_description=Whether to generate prior plots
+p5_description=Whether to generate prior probability distribution plots
 p5_name=create.prior.plots
 p5_optional=on
 p5_prefix_when_specified=
@@ -64,7 +73,10 @@ p5_type=java.lang.String
 p5_value=T\=yes;F\=no
 
 p6_default_value=parametric
-p6_description=Empirical priors method to use
+p6_description=Empirical Bayes priors distribution estimation
+method to use. Either a parametric or non-parametric method
+can be applied. If unsure of which method to use try the parametric
+method first since it is faster.
 p6_name=prior.method
 p6_optional=on
 p6_prefix_when_specified=
@@ -72,7 +84,7 @@ p6_type=java.lang.String
 p6_value=T\=parametric;F\=nonparametric
 
 p7_default_value=<input.file_basename>.combat
-p7_description=The name of the output file
+p7_description=Name of batch adjusted output file
 p7_name=output.file
 p7_optional=on
 p7_prefix_when_specified=
