@@ -3,7 +3,7 @@ author=Marc-Danie Nazaire, Broad Institute
 commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> -f<filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
 cpuType=any
 description=Batch Correction
-fileFormat=res;gct;odf
+fileFormat=res;gct
 JVMLevel=2.5.0
 language=R
 LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00127
@@ -18,7 +18,7 @@ userid=GenePattern
 version=
 
 p1_default_value=
-p1_description=input file Ð .res, .gct
+p1_description=input file - .res, .gct
 p1_fileFormat=gct;res;odf
 p1_MODE=IN
 p1_name=input.file
@@ -29,8 +29,7 @@ p1_type=java.io.File
 p1_value=
 
 p2_default_value=
-p2_description=A file containing information about the samples. The sample info file must contain the three columns Array name, Sample name, and Batch.
-
+p2_description=A file containing information about the samples. The sample info file must contain the three columns: Array name, Sample name, and Batch.
 p2_fileFormat=txt
 p2_MODE=IN
 p2_name=sample.info.file
@@ -42,7 +41,6 @@ p2_value=
 
 p3_default_value=
 p3_description=The covariate columns to use in analysis. This is a list specifying additional columns from sample info file to use in analysis (i.e, 4, 5, 7, . .).
-
 p3_name=covariate.columns
 p3_optional=on
 p3_prefix_when_specified=
@@ -50,7 +48,7 @@ p3_type=java.lang.String
 p3_value=
 
 p4_default_value=
-p4_description=The filter to apply to genes with absent calls. Filters genes with absent calls in 1-(filter absent calls) of the samples. A value of 1 implies no genes should be filtered. Ignored if input file is not a .res file.	
+p4_description=The filter to apply to genes with absent calls (a value between 0 and 1). Filters genes with absent calls in 1-(filter absent calls) of the samples. A value of 1 implies no genes should be filtered. Ignored if input file is not a .res file.	
 p4_name=filter
 p4_optional=on
 p4_prefix_when_specified=
