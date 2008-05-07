@@ -75,13 +75,29 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     dataset <- read.dataset(input.file.name)
     data.matrix <- dataset$data
 
+    sample.info <- read.table(sample.info.file.name, header=T, sep='\t',comment.char='')
+
+    if(length(colnames(sample.info)) < 3)
+    {
+        stop("The Sample info file must have the 3 columns: Array, Sample, Batch.")
+    }
+
+
     if(!is.null(dataset$calls) && (is.null(filter) || filter==''))
         stop("Input file contains calls: Please specify a value for the filter absent calls parameter.")
 
     if(is.null(dataset$calls))
         filter <- F
-        
-    combat.input.file.name <- "combat_input_file.txt"
+
+    gct.ext <- regexpr(paste(".gct","$",sep=""), tolower(output.file.name))
+    res.ext <- regexpr(paste(".res","$",sep=""), tolower(output.file.name))
+	if(gct.ext[[1]] != -1 || res.ext[[1]] != -1)
+	{
+	    output.file.name <- substr(output.file.name, 0, (nchar(output.file.name)-4))
+	}
+		
+	combat.input.file.name <- paste(output.file.name, ".txt")
+
     on.exit(unlink(combat.input.file.name))
 
     column.names <- c("ProbeID", colnames(data.matrix))
@@ -109,7 +125,16 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     write.table(input.table, file=combat.input.file.name, sep="\t", col.names = FALSE, quote=FALSE, append=TRUE)
 
     if(prior.plots)
-        pdf(file=paste(output.file.name, ".plot", sep=''), height = 12, width = 15)
+    {
+        if (.Platform$OS.type == "windows")
+        {
+            jpeg(filename = paste(output.file.name, ".plot.pdf", sep=''), height=12, width = 15) 
+        }
+        else
+        {
+           pdf(file = paste(output.file.name, ".plot.pdf", sep=''), height = 12, width = 15)
+        }
+    }
 
     combat.result <- ComBat(combat.input.file.name, sample.info.file.name, filter = filter, skip = 1, write = F, prior.plots = prior.plots, par.prior = par.prior)
 
@@ -126,7 +151,6 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     {
         descriptions.row <- rbind(row.names(data.matrix), dataset$row.descriptions)
         colnames(descriptions.row) <- row.names(data.matrix)
-        #descriptions.row <- descriptions.row[gene.info]
         descriptions.row <- subset(descriptions.row, select = row.names(combat.result))
         dataset$row.descriptions <- descriptions.row[2,]
     }
