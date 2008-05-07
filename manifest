@@ -1,6 +1,6 @@
 #Wed April 24 10:51:36 EDT 2008
 author=Marc-Danie Nazaire, Broad Institute
-commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> -f<filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
+commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> -f<absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
 cpuType=any
 description=Batch Correction
 fileFormat=res;gct
@@ -29,7 +29,7 @@ p1_type=java.io.File
 p1_value=
 
 p2_default_value=
-p2_description=A file containing information about the samples. The sample info file must contain the three columns: Array name, Sample name, and Batch.
+p2_description=A file containing information about the samples. The sample info file must contain the three columns: Array, Sample, and Batch.
 p2_fileFormat=txt
 p2_MODE=IN
 p2_name=sample.info.file
@@ -48,8 +48,8 @@ p3_type=java.lang.String
 p3_value=
 
 p4_default_value=
-p4_description=The filter to apply to genes with absent calls (a value between 0 and 1). Filters genes with absent calls in 1-(filter absent calls) of the samples. A value of 1 implies no genes should be filtered. Ignored if input file is not a .res file.	
-p4_name=filter
+p4_description=The filter to apply to genes with absent calls (a value between 0 and 1). Filters genes with absent calls in 1-(absent calls filter) of the samples. A value of 1 implies no genes should be filtered. Ignored if input file is not a .res file.	
+p4_name=absent.calls.filter
 p4_optional=on
 p4_prefix_when_specified=
 p4_type=java.lang.String
@@ -71,7 +71,7 @@ p6_prefix_when_specified=
 p6_type=java.lang.String
 p6_value=T\=parametric;F\=nonparametric
 
-p7_default_value=<input.file_basename>.combat
+p7_default_value=<input.file_basename>.combat.<input.file_extension>
 p7_description=Name of batch adjusted output file
 p7_name=output.file
 p7_optional=on
