@@ -137,7 +137,7 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
 
     if(prior.plots)
     {
-        if (.Platform$OS.type == "windows")
+        if (capabilities("jpeg"))
         {
             jpeg(filename = paste(output.file.name, ".plot.jpeg", sep=''), width = 800, height = 720) 
         }
