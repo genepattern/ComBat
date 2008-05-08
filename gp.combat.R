@@ -25,6 +25,7 @@ parseCmdLine <- function(...) {
 	{
 	    flag <- substring(args[[i]], 0, 2)
 		value <- substring(args[[i]], 3, nchar(args[[i]]))
+
 		if(flag=='-i')
 		{
 			input.file.name <- value
@@ -57,7 +58,6 @@ parseCmdLine <- function(...) {
 		{
 			libdir <- value
    		}
-
    		else
    		{
 			stop(paste("unknown flag ", flag, " value ", value, sep=""), .call=FALSE)
@@ -79,15 +79,25 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
 
     if(length(colnames(sample.info)) < 3)
     {
-        stop("The Sample info file must have the 3 columns: Array, Sample, Batch.")
+        stop("The sample info file must have the 3 columns: Array, Sample, Batch.")
     }
 
+    if(filter <= 0 || filter >= 1)
+    {
+        stop("Absent calls filter must be greater than 0 and less than 1")
+    }
 
-    if(!is.null(dataset$calls) && (is.null(filter) || filter==''))
-        stop("Input file contains calls: Please specify a value for the filter absent calls parameter.")
-
-    if(is.null(dataset$calls))
-        filter <- F
+    if(is.null(filter) || filter == '')
+    {
+        if(is.null(dataset$calls))
+        {
+            filter <- F
+        }
+        else
+        {
+           filter <- 1
+        }
+    }
 
     gct.ext <- regexpr(paste(".gct","$",sep=""), tolower(output.file.name))
     res.ext <- regexpr(paste(".res","$",sep=""), tolower(output.file.name))
