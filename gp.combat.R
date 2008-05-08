@@ -82,10 +82,6 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
         stop("The sample info file must have the 3 columns: Array, Sample, Batch.")
     }
 
-    if(filter <= 0 || filter >= 1)
-    {
-        stop("Absent calls filter must be greater than 0 and less than 1")
-    }
 
     if(is.null(filter) || filter == '')
     {
@@ -98,6 +94,11 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
            filter <- 1
         }
     }
+    else if(!is.null(dataset$calls) && (filter <= 0 || filter >= 1))
+    {
+        stop("Absent calls filter must be greater than 0 and less than 1")
+    }
+
 
     gct.ext <- regexpr(paste(".gct","$",sep=""), tolower(output.file.name))
     res.ext <- regexpr(paste(".res","$",sep=""), tolower(output.file.name))
@@ -138,7 +139,7 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     {
         if (.Platform$OS.type == "windows")
         {
-            jpeg(filename = paste(output.file.name, ".plot.pdf", sep=''), height=12, width = 15) 
+            jpeg(filename = paste(output.file.name, ".plot.jpeg", sep=''), width = 800, height = 720) 
         }
         else
         {
