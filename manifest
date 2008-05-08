@@ -1,10 +1,10 @@
-#Wed May 07 23:26:50 EDT 2008
+#Wed May 07 23:44:00 EDT 2008
 p5_optional=on
 p6_type=java.lang.String
 commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
 description=Batch Correction
 p2_TYPE=FILE
-p7_optional=on
+p7_optional=
 p3_description=The covariate columns to use in analysis. This is a list specifying additional columns from sample info file to use in analysis (i.e, 4, 5, 7, . .).
 userid=GenePattern
 p6_name=prior.method
@@ -19,7 +19,7 @@ p4_value=
 p6_description=Empirical Bayes priors distribution estimation method to use. Either a parametric or non-parametric method can be applied. If unsure of which method to use try the parametric method first since it is faster.
 p1_description=input file - .res, .gct
 p7_name=output.file
-version=Modified doc and plot image formats
+version=Fixed absent calls filter validation
 taskType=Preprocess & Utilities
 p4_prefix_when_specified=-f
 p1_fileFormat=gct;res;odf
@@ -36,7 +36,7 @@ p7_default_value=<input.file_basename>.combat.<input.file_extension>
 p4_description=The filter to apply to genes with absent calls (a value between 0 and 1). Filters genes with absent calls in 1-(absent calls filter) of the samples. Ignored if input file is not a .res file.\t
 p2_optional=
 p5_default_value=yes
-publicationDate=05/07/2008 23\:26 
+publicationDate=05/07/2008 23\:44 
 p2_prefix_when_specified=
 p4_optional=on
 p2_type=java.io.File
@@ -69,6 +69,6 @@ p2_default_value=
 p5_name=create.prior.plots
 p1_MODE=IN
 p6_default_value=parametric
-p3_prefix_when_specified=
 p5_value=T\=yes;F\=no
+p3_prefix_when_specified=
 p3_optional=on
