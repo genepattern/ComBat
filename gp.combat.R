@@ -83,7 +83,11 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     }
 
 
-    if(is.null(filter) || filter == '')
+    if(!is.null(dataset$calls) && (filter <= 0 || filter >= 1))
+    {
+        stop("Absent calls filter must be greater than 0 and less than 1")
+    }
+    else if(is.null(dataset$calls) || is.null(filter) || filter == '')
     {
         if(is.null(dataset$calls))
         {
@@ -94,11 +98,6 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
            filter <- 1
         }
     }
-    else if(!is.null(dataset$calls) && (filter <= 0 || filter >= 1))
-    {
-        stop("Absent calls filter must be greater than 0 and less than 1")
-    }
-
 
     gct.ext <- regexpr(paste(".gct","$",sep=""), tolower(output.file.name))
     res.ext <- regexpr(paste(".res","$",sep=""), tolower(output.file.name))
@@ -137,21 +136,32 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
 
     if(prior.plots)
     {
-        if (capabilities("jpeg"))
+        if (.Platform$OS.type == "windows")
+        {
+             windows(width = 15, height = 12)
+            savePlot(filename = paste(output.file.name, ".plot.jpeg", sep=''), type ="jpeg", device = dev.cur())
+        }
+        else if (capabilities("jpeg"))
         {
             jpeg(filename = paste(output.file.name, ".plot.jpeg", sep=''), width = 800, height = 720) 
         }
         else
         {
-           pdf(file = paste(output.file.name, ".plot.pdf", sep=''), height = 12, width = 15)
+           pdf(file = paste(output.file.name, ".plot.pdf", sep=''), paper ="letter", height = 12, width = 15)
         }
     }
 
     combat.result <- ComBat(combat.input.file.name, sample.info.file.name, filter = filter, skip = 1, write = F, prior.plots = prior.plots, par.prior = par.prior)
 
     if(prior.plots)
-        dev.off();
+    {
+        if (.Platform$OS.type == "windows")
+        {    
+            savePlot(filename = paste(output.file.name, ".plot.jpeg", sep=''), type ="jpeg", device = dev.cur())
+        }
 
+        dev.off();
+    }
     gene.info <- combat.result[,1]
     combat.result <- subset(combat.result, select = colnames(data.matrix))
 
