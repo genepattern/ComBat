@@ -82,21 +82,15 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
         stop("The sample info file must have the 3 columns: Array, Sample, Batch.")
     }
 
-
-    if(!is.null(dataset$calls) && (filter <= 0 || filter >= 1))
-    {
-        stop("Absent calls filter must be greater than 0 and less than 1")
+    if(!is.null(dataset$calls))
+    {   if(is.null(filter) || filter == '')
+             filter <- 1
+        else if (filter <= 0 || filter >= 1)
+            stop("Absent calls filter must be greater than 0 and less than 1")
     }
-    else if(is.null(dataset$calls) || is.null(filter) || filter == '')
+    else
     {
-        if(is.null(dataset$calls))
-        {
-            filter <- F
-        }
-        else
-        {
-           filter <- 1
-        }
+        filter <- F
     }
 
     gct.ext <- regexpr(paste(".gct","$",sep=""), tolower(output.file.name))
@@ -152,6 +146,7 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     }
 
     combat.result <- ComBat(combat.input.file.name, sample.info.file.name, filter = filter, skip = 1, write = F, prior.plots = prior.plots, par.prior = par.prior)
+
 
     if(prior.plots)
     {
