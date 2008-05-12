@@ -68,7 +68,7 @@ parseCmdLine <- function(...) {
 
 }
 
-gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.file.name, prior.plots, par.prior, filter)
+gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.file.name, prior.plots, par.prior, filter, covariates)
 {
     setup(libdir)
 
@@ -145,7 +145,7 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
         }
     }
 
-    combat.result <- ComBat(combat.input.file.name, sample.info.file.name, filter = filter, skip = 1, write = F, prior.plots = prior.plots, par.prior = par.prior)
+    combat.result <- ComBat(combat.input.file.name, sample.info.file.name, filter = filter, skip = 1, write = F, prior.plots = prior.plots, par.prior = par.prior, covariates = covariates)
 
 
     if(prior.plots)
