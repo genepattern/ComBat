@@ -64,7 +64,7 @@ parseCmdLine <- function(...) {
 		}
     }
 
-    gp.combat.R(input.file.name = input.file.name, sample.info.file.name =sample.info.file.name, libdir = libdir, output.file.name = output.file.name, prior.plots = prior.plots , par.prior = par.prior, filter = filter)
+    gp.combat.R(input.file.name = input.file.name, sample.info.file.name =sample.info.file.name, libdir = libdir, output.file.name = output.file.name, prior.plots = prior.plots , par.prior = par.prior, filter = filter, covariates = covariates)
 
 }
 
