@@ -36,6 +36,11 @@ parseCmdLine <- function(...) {
    		}
    		else if(flag == '-c')
 		{
+		    value <- lapply(value, as.integer)
+		    if(regexpr(TRUE, is.na(value)))
+		    {
+		        stop("Covariate columns must be an integer.")
+		    }
 			covariates <- c(3, value)
    		}
    		else if(flag=='-f')
