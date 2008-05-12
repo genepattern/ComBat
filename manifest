@@ -1,7 +1,7 @@
 #Wed May 07 23:44:00 EDT 2008
 p5_optional=on
 p6_type=java.lang.String
-commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
+commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> <covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
 description=Batch Correction
 p2_TYPE=FILE
 p7_optional=
@@ -19,7 +19,7 @@ p4_value=
 p6_description=Empirical Bayes priors distribution estimation method to use. Either a parametric or non-parametric method can be applied. If unsure of which method to use try the parametric method first since it is faster.
 p1_description=input file - .res, .gct
 p7_name=output.file
-version=Fixed absent calls filter validation
+version=Fix to ingore filter absent calls when input file is gct
 taskType=Preprocess & Utilities
 p4_prefix_when_specified=-f
 p1_fileFormat=gct;res;odf
@@ -70,5 +70,5 @@ p5_name=create.prior.plots
 p1_MODE=IN
 p6_default_value=parametric
 p5_value=T\=yes;F\=no
-p3_prefix_when_specified=
+p3_prefix_when_specified=-c
 p3_optional=on
