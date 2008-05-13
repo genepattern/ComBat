@@ -89,9 +89,17 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
         stop("The sample info file must have the 3 columns: Array, Sample, Batch.")
     }
 
-    if(colnames(sample.info)[colnames(sample.info) == 'Batch'] != "Batch")
+    if(colnames(sample.info)[1] != "Array")
     {
-        stop("Missing 'Batch' column in sample info file.")
+        stop("Error: 'Array' column must be the first column in the sample info file.")
+    }
+    if(colnames(sample.info)[2] != "Sample")
+    {
+        stop("Error: 'Sample' column must be the second column in the sample info file.")
+    }
+    if(colnames(sample.info)[3] != "Batch")
+    {
+        stop("Error: 'Batch' column must be the third column in the sample info file.")
     }
 
     if(is.null(covariates) || covariates == '')
@@ -123,7 +131,7 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
 	    output.file.name <- substr(output.file.name, 0, (nchar(output.file.name)-4))
 	}
 		
-	combat.input.file.name <- paste(output.file.name, ".txt")
+	combat.input.file.name <- paste(output.file.name, ".txt", sep='')
 
     on.exit(unlink(combat.input.file.name))
 
@@ -151,7 +159,7 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     cat("\n", file = combat.input.file.name, append=TRUE)
     write.table(input.table, file=combat.input.file.name, sep="\t", col.names = FALSE, quote=FALSE, append=TRUE)
 
-    if(prior.plots)
+    if(prior.plots && par.prior)
     {
         if (.Platform$OS.type == "windows")
         {
@@ -174,7 +182,7 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     if(!is.list(combat.result))
         unlink(paste(output.file.name, "*", sep=''))
         
-    if(prior.plots)
+    if(prior.plots && par.prior)
     {
         if (.Platform$OS.type == "windows")
         {    
