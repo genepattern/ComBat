@@ -131,7 +131,7 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
 	    output.file.name <- substr(output.file.name, 0, (nchar(output.file.name)-4))
 	}
 		
-	combat.input.file.name <- paste(output.file.name, ".txt", sep='')
+	combat.input.file.name <- paste(output.file.name, ".temp.txt", sep='')
 
     on.exit(unlink(combat.input.file.name))
 
