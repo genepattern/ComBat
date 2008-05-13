@@ -36,11 +36,14 @@ parseCmdLine <- function(...) {
    		}
    		else if(flag == '-c')
 		{
+		    value <- strsplit(value, ",")
 		    value <- lapply(value, as.integer)
+		    value <- lapply(value, unlist)
 		    if(regexpr(TRUE, is.na(value)) != -1)
 		    {
-		        stop("Covariate columns must be an integer.")
+		        stop("Covariate columns can only be integers.")
 		    }
+		    covariates <- value
    		}
    		else if(flag=='-f')
 		{
@@ -95,12 +98,12 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
     {
         covariates <- 'all'
     }
-    else if(min(covariates) <= 3 || max(covariates) > length(colnames(sample.info)))
+    else if(min(unlist(covariates)) <= 3 || max(unlist(covariates)) > length(colnames(sample.info)))
     {
         stop("Invalid covariates column parameter setting. Covariates column(s) must be less than or equal to the number of columns in the sample info file and greater than 3.")
     }
     else
-        covariates <- c(3, value, recursive = TRUE)
+        covariates <- c(3, covariates, recursive = TRUE)
 
     if(!is.null(dataset$calls))
     {   if(is.null(filter) || filter == '')
@@ -166,7 +169,11 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
 
     combat.result <- ComBat(combat.input.file.name, sample.info.file.name, filter = filter, skip = 1, write = F, prior.plots = prior.plots, par.prior = par.prior, covariates = covariates)
 
-
+    if(is.character(combat.result))
+        stop(paste("An error occurred which running ComBat. ", combat.result, sep=''))
+    if(!is.list(combat.result))
+        unlink(paste(output.file.name, "*", sep=''))
+        
     if(prior.plots)
     {
         if (.Platform$OS.type == "windows")
