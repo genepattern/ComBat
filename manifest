@@ -1,11 +1,11 @@
 #Wed May 07 23:44:00 EDT 2008
 p5_optional=on
 p6_type=java.lang.String
-commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> <covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
+commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
 description=Batch Correction
 p2_TYPE=FILE
 p7_optional=
-p3_description=A subset covariate columns to use in analysis. This is a list specifying one or more covariate columns from sample info file to use in the analysis (i.e, 4, 5, 7, . .). Leave blank if you want to use all the columns.
+p3_description=The covariate columns to use in analysis. This is either set to all, none, or a list specifying one or more covariate columns from sample info file to use in the analysis (i.e, 4, 5, 7, ...). If this is set to \'all\' then all the covariate columns are used. If this is set to \'none\' then none of the covariate columns are used.
 userid=GenePattern
 p6_name=prior.method
 p2_MODE=IN
@@ -29,7 +29,7 @@ p1_default_value=
 privacy=public
 os=any
 requiredPatchURLs=http\://www.broad.mit.edu/webservices/gpModuleRepository/download/prod/patch/?file\=/R_2_5_Check/broad.mit.edu\:cancer.software.genepattern.server.patch/00009/1/R2_5.zip
-p3_default_value=
+p3_default_value=all
 cpuType=any
 p1_name=input.file
 p7_default_value=<input.file_basename>.combat.<input.file_extension>
@@ -70,5 +70,5 @@ p5_name=create.prior.plots
 p1_MODE=IN
 p6_default_value=parametric
 p5_value=T\=yes;F\=no
-p3_prefix_when_specified=-c
-p3_optional=on
+p3_prefix_when_specified=
+p3_optional=
