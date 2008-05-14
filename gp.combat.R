@@ -36,14 +36,22 @@ parseCmdLine <- function(...) {
    		}
    		else if(flag == '-c')
 		{
-		    value <- strsplit(value, ",")
-		    value <- lapply(value, as.integer)
-		    value <- lapply(value, unlist)
-		    if(regexpr(TRUE, is.na(value)) != -1)
+		    if(tolower(value) == "all" || tolower(value) == "none")
 		    {
-		        stop("Covariate columns can only be integers.")
+		        covariates <- tolower(value)
 		    }
-		    covariates <- value
+		    else
+		    {
+		        value <- strsplit(value, ",")
+		        value <- suppressWarnings(lapply(value, as.integer))
+		        value <- lapply(value, unlist)
+		        if(regexpr(TRUE, lapply(value, is.na)) != -1)
+		        {
+		            stop("Covariate columns can only be set to all, none, or a list of one or more column indices.")
+		        }
+
+		        covariates <- value
+		    }
    		}
    		else if(flag=='-f')
 		{
@@ -102,9 +110,13 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
         stop("Error: 'Batch' column must be the third column in the sample info file.")
     }
 
-    if(is.null(covariates) || covariates == '')
+    if(is.null(covariates) || covariates == '' || tolower(covariates) == "all")
     {
         covariates <- 'all'
+    }
+    else if(tolower(covariates) == "none")
+    {
+        covariates <- c(3)
     }
     else if(min(unlist(covariates)) <= 3 || max(unlist(covariates)) > length(colnames(sample.info)))
     {
