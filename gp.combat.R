@@ -3,9 +3,13 @@ function(libdir)
 {
 	source(paste(libdir, "ComBat.R", sep=''))
 	source(paste(libdir, "common.R", sep=''))
+
+    #setLibPath(libdir)
+	#install.required.packages(libdir)
 }
 
-parseCmdLine <- function(...) {
+parseCmdLine <- function(...)
+{
 	suppressMessages(.parseCmdLine(...))
 }
 
@@ -173,6 +177,7 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
 
     if(prior.plots && par.prior)
     {
+
         if (.Platform$OS.type == "windows")
         {
              windows(width = 17, height = 14)
@@ -181,9 +186,15 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
         {
             jpeg(filename = paste(output.file.name, ".plot.jpeg", sep=''), width = 800, height = 720)
         }
+        else if (capabilities("png"))
+        {
+            png(filename = paste(output.file.name, ".plot.jpeg", sep=''), width = 800, height = 720)
+        }
         else
         {
-           pdf(file = paste(output.file.name, ".plot.pdf", sep=''), paper ="letter", width = 15, height = 12)
+            library(Cairo)
+
+            CairoPNG(filename = paste(output.file.name, ".plot.png", sep=''), width = 800, height = 720, pointsize = 12, quality = 75, bg = "white")
         }
     }
 
