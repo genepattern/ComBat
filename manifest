@@ -1,7 +1,7 @@
 #Wed Jun 25 11:53:08 EDT 2008
 p5_optional=on
 p6_type=java.lang.String
-commandLine=<R2.5> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
+commandLine=<R2.7> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
 description=Batch Correction
 p2_TYPE=FILE
 p7_optional=
@@ -19,7 +19,7 @@ p4_value=
 p6_description=Empirical Bayes priors distribution estimation method to use. Either a parametric or non-parametric method can be applied. If unsure of which method to use try the parametric method first since it is faster.
 p1_description=input file - .res, .gct
 p7_name=output.file
-version=Added ability to use none of the covariate columns in the analysis and updated doc
+version=added Cairo as an option to generate png
 taskType=Preprocess & Utilities
 p4_prefix_when_specified=-f
 p1_fileFormat=gct;res;odf
@@ -27,7 +27,7 @@ p3_value=
 p1_type=java.io.File
 p1_default_value=
 privacy=public
-os=Windows
+os=
 requiredPatchURLs=http\://www.broad.mit.edu/webservices/gpModuleRepository/download/prod/patch/?file\=/R_2_5_Check/broad.mit.edu\:cancer.software.genepattern.server.patch/00009/1/R2_5.zip
 p3_default_value=all
 cpuType=any
