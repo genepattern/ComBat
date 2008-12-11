@@ -186,10 +186,6 @@ gp.combat.R <- function(input.file.name, sample.info.file.name, libdir, output.f
         {
             jpeg(filename = paste(output.file.name, ".plot.jpeg", sep=''), width = 800, height = 720)
         }
-        else if (capabilities("png"))
-        {
-            png(filename = paste(output.file.name, ".plot.jpeg", sep=''), width = 800, height = 720)
-        }
         else
         {
             library(Cairo)
