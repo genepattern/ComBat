@@ -1,4 +1,4 @@
-#Wed Jun 25 11:53:08 EDT 2008
+p2#Wed Jun 25 11:53:08 EDT 2008
 p5_optional=on
 p6_type=java.lang.String
 commandLine=<R2.7> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
@@ -50,7 +50,7 @@ p2_value=
 name=ComBat
 p3_name=covariate.columns
 p7_description=Name of batch adjusted output file
-p2_description=A file containing information about the samples. The sample info file must contain the three columns\: Array, Sample, and Batch. Any additional columns are used as covariates in the analysis. 
+p2_description=A file containing information about the samples. The sample info file must contain the three columns\: Array, Sample, and Batch. Any additional columns are used as covariates in the analysis.(.txt file)
 p4_type=java.lang.String
 p7_value=
 p1_value=
