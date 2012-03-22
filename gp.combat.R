@@ -1,4 +1,4 @@
-asetup <-
+setup <-
 function(libdir)
 {
 	source(paste(libdir, "ComBat.R", sep=''))
