@@ -35,7 +35,7 @@ p1_name=input.file
 p7_default_value=<input.file_basename>.combat.<input.file_extension>
 p4_description=The filter to apply to genes with absent calls (a value between 0 and 1). Filters genes with absent calls in 1-(absent calls filter) of the samples. Ignored if input file is not a .res file.\t
 p2_optional=
-p5_default_value=yes
+p5_default_value=T
 publicationDate=06/25/2008 11\:53 
 p2_prefix_when_specified=
 p4_optional=on
@@ -68,7 +68,7 @@ p1_optional=
 p2_default_value=
 p5_name=create.prior.plots
 p1_MODE=IN
-p6_default_value=parametric
+p6_default_value=T
 p5_value=T\=yes;F\=no
 p3_prefix_when_specified=
 p3_optional=
