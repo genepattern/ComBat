@@ -1,0 +1,10 @@
+name: ComBat Example Data
+#    urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00127:3
+#    Tested on gpprod with v3 example data from documentation
+module: ComBat
+params:
+    input.file: "ftp://gpftp.broadinstitute.org/example_data/modules/ComBat/b1_b2_data.gct"
+    sample.info.file: "ftp://gpftp.broadinstitute.org/example_data/modules/ComBat/b1_b2_sampleinfofile.txt"
+    covariate.columns: "all"
+assertions:
+    jobStatus: success
