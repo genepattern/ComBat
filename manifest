@@ -74,4 +74,4 @@ requiredPatchURLs=http\://www.broad.mit.edu/webservices/gpModuleRepository/downl
 taskDoc=doc.html
 taskType=Preprocess & Utilities
 userid=GenePattern
-version=Setting parameter "create.prior.plots" to only receive "no" as an accepted value. Temporary patch.
+version=Setting parameter create.prior.plots to only receive no as an accepted value. Temporary patch.
