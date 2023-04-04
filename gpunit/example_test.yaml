@@ -3,8 +3,8 @@ name: ComBat Example Data
 #    Tested on gpprod with v3 example data from documentation
 module: ComBat
 params:
-    input.file: "ftp://gpftp.broadinstitute.org/example_data/modules/ComBat/b1_b2_data.gct"
-    sample.info.file: "ftp://gpftp.broadinstitute.org/example_data/modules/ComBat/b1_b2_sampleinfofile.txt"
+    input.file: "https://datasets.genepattern.org/gpftp/example_data/modules/ComBat/b1_b2_data.gct"
+    sample.info.file: "https://datasets.genepattern.org/gpftp/example_data/modules/ComBat/b1_b2_sampleinfofile.txt"
     covariate.columns: "all"
 assertions:
     jobStatus: success
