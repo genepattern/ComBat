@@ -3,6 +3,7 @@
 JVMLevel=2.5.0
 LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00127\:3.1
 author=Marc-Danie Nazaire, Broad Institute
+categories=preprocess & utilities;batch correction
 commandLine=<R2.7> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
 cpuType=any
 description=Batch Correction - Not intended for use with single-cell RNA-seq data.
