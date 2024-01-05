@@ -1,9 +1,9 @@
 #ComBat
-#Fri Jan 05 21:01:45 UTC 2024
+#Fri Jan 05 21:11:30 UTC 2024
 JVMLevel=
-LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00127\:3.1.1
+LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00127\:3.6
 author=Marc-Danie Nazaire, Broad Institute
-categories=preprocess & utilities;batch correction
+categories=batch correction
 commandLine=<R2.7> <libdir>gp.combat.R parseCmdLine -i<input.file> -s<sample.info.file> -c<covariate.columns> <absent.calls.filter> -p<create.prior.plots> -m<prior.method> -o<output.file> -l<libdir>
 cpuType=any
 description=Batch Correction - Not intended for use with single-cell RNA-seq data.
@@ -109,12 +109,12 @@ p7_prefix_when_specified=
 p7_type=java.lang.String
 p7_value=
 privacy=public
-publicationDate=02/22/2021 13\:18 
-quality=preproduction
+publicationDate=01/05/2024 16\:09 
+quality=production
 requiredPatchLSIDs=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.server.patch\:00009\:1
 requiredPatchURLs=http\://www.broad.mit.edu/webservices/gpModuleRepository/download/prod/patch/?file\=/R_2_5_Check/broad.mit.edu\:cancer.software.genepattern.server.patch/00009/1/R2_5.zip
 src.repo=
 taskDoc=doc.html
-taskType=preprocess & utilities
-userid=edjuaro
-version=added batch correction tag
+taskType=batch correction
+userid=GenePattern
+version=new batch correction tag
